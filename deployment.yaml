@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bimbs-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bimbs-app
+  template:
+    metadata:
+      labels:
+        app: bimbs-app
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: bimbs-app
+        image: bimbstech24/swiss-docker:main-0af2b75
+        ports:
+        - containerPort: 4004
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 4004
+          initialDelaySeconds: 3
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 4004
+          initialDelaySeconds: 3
+          periodSeconds: 3
