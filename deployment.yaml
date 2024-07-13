@@ -16,7 +16,7 @@ spec:
       - name: regcred
       containers:
       - name: bimbs-app
-        image: bimbstech24/swiss-docker:main-0af2b75
+        image: bimbstech24/swiss-docker:main-ba2f1ef
         ports:
         - containerPort: 4004
         livenessProbe:
